@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULTICAP SOLUTIONS</title>
+    <style>
+        /* Eliminar márgenes y padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Contenedor principal para fondo transparente */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/r1.jpeg'); /* calocar nombre de imagen */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.1; /* Ajuste de transparencia */
+            z-index: -1; /* Manda la capa al fondo */
+        }
+
+        body {
+            font-family: 'Bell MT', serif;
+            color: black;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 20px;
+        }
+
+        p {
+            text-align: center;
+            max-width: 800px;
+            margin: 10px auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Media queries para pantallas pequeñas */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            img {
+                width: 80%; /* Ajuste para evitar que la imagen sea demasiado grande en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Capa de fondo transparente -->
+    <div class="background-overlay"></div>
+
+    <h1>MULTICAP SOLUTIONS</h1>
+
+    <p>
+        MULTICAP SOLUTIONS es una plataforma que optimiza y facilita el proceso de contratación del personal 
+        mediante la automatización de la publicación de vacantes, la búsqueda y evaluación de candidatos con 
+        el apoyo de Talento Humano.
+    </p>
+
+    <h1>OBJETIVO ESPECÍFICO</h1>
+
+    <p>
+        Plataforma de contratación que, con la integración de Talento Humano, permite al empresario publicar ofertas, 
+        filtrar candidatos automáticamente y coordinar entrevistas virtuales. Brinda una interfaz personalizada 
+        que conecta habilidades con las oportunidades adecuadas, optimizando tiempo, costos y desarrollo profesional.
+    </p>
+
+    <img src="talento-humano.JPG" width="150" height="150" alt="Talento Humano">
+
+    <h1>FUNCIONAMIENTO</h1>
+
+    <p>
+        Optimiza el proceso de selección mediante emparejamiento automático, conectando eficientemente a empleadores y candidatos.
+    </p>
+
+    <p>
+        1. <b>Registro y Configuración de Perfiles:</b> Creación y personalización de perfiles en un sistema, donde se almacenan datos relevantes.<br>
+        2. <b>Matching Automatizado:</b> Algoritmo que compara perfiles de candidatos con los requisitos de los puestos de trabajo.<br>
+        3. <b>Gestión del Proceso de Selección:</b> Supervisión de todas las etapas del reclutamiento.<br>
+        4. <b>Feedback y Decisiones:</b> Provisión de comentarios y evaluaciones sobre los candidatos.<br>
+        5. <b>Integración con Sistemas de Recursos Humanos:</b> Conexión con plataformas de gestión de recursos humanos.<br>
+        6. <b>Seguridad y Confidencialidad:</b> Medidas para proteger la información sensible de los usuarios.
+    </p>
+
+</body>
+</html>

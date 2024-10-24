@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULTICAP SOLUTIONS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #BCDEF7;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+        }
+
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/imagenfondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        body {
+            font-family: 'Bell MT', serif;
+            color: var(--text-color);
+            position: relative;
+            min-height: 100vh;
+            line-height: 1;
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+            width: 100%;
+        }
+
+        .nav-links img {
+            height: 40px;
+            margin: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        section {
+            padding: 3rem 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+            background-color: white;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        p {
+            text-align: center;
+            max-width: 800px;
+            margin: 1.5rem auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--primary-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        img {
+            display: block;
+            margin: 2rem auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        #objetivo img {
+            width: 15%;
+            min-width: 150px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: relative;
+                height: auto;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .nav-links img {
+                height: 30px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            #objetivo img {
+                width: 30%;
+                min-width: 120px;
+            }
+        }
+
+        .services-section {
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .services-frame {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        .footer-content {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .personal-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .personal-info p {
+            font-size: 1rem;
+            margin: 0.3rem 0;
+            color: var(--text-color);
+        }
+
+        .emoji-accent {
+            font-size: 1.2rem;
+            margin: 0 0.2rem;
+            vertical-align: middle;
+        }
+        .footer-content {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.personal-info {
+    width: 100%;
+}
+
+.contact-info {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-link {
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+}
+
+.social-link:hover {
+    color: var(--secondary-color);
+}
+
+.sena-info {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.sena-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.sena-link:hover {
+    color: var(--secondary-color);
+}
+section p {
+    text-align: justify;
+    max-width: 800px;
+    margin: 1.5rem auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 0 1rem;
+}
+
+/* Estilos para las tarjetas de características */
+.feature-card p {
+    text-align: justify;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Estilos para el contenido del footer */
+.personal-info p {
+    text-align: center; /* Mantenemos el footer centrado */
+}
+
+.contact-item p {
+    text-align: center; /* Mantenemos los items de contacto centrados */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    section p {
+        text-align: justify;
+        padding: 0 15px;
+    }
+    
+    .feature-card p {
+        text-align: justify;
+    }
+}
+.feature-card {
+        background: linear-gradient(
+            rgba(255, 255, 255, 0.8), 
+            rgba(255, 255, 255, 0.8)
+        ),
+        url('./imagenfondo2.jpg');  /* Aquí deberás reemplazar con la URL de tu imagen */
+        background-size: cover;
+        background-position: center;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid var(--primary-color);
+        position: relative;
+        z-index: 1;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card h3 {
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .feature-card p {
+        position: relative;
+        z-index: 2;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="background-overlay"></div>
+
+   
+    <nav>
+
+        <ul class="nav-links">
+            <li><a href="#logoRH"><img src="imagenfondoRecortado-removebg-preview.jpg" alt=""></a></li>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#objetivo">Objetivo</a></li>
+            <li><a href="#funcionamiento">Funcionamiento</a></li>
+            <li><a href="#contacto">Contacto</a></li> 
+            <li><a href="#logoSena"><img src="logoBlanco-removebg-preview-removebg-preview.jpg" alt=""></a></li>
+        </ul>
+    </nav>
+
+    <section id="inicio" class="visible">
+        <h1>MULTICAP SOLUTIONS</h1>
+        <p data-aos="fade-up">
+            MULTICAP SOLUTIONS es una plataforma que optimiza y facilita el proceso de contratación del personal 
+            mediante la automatización de la publicación de vacantes, la búsqueda y evaluación de candidatos con 
+            el apoyo de Talento Humano.
+        </p>
+    </section>
+
+    <section id="objetivo">
+        <h1>OBJETIVO ESPECÍFICO</h1>
+        <p data-aos="fade-up">
+            Plataforma de contratación que, con la integración de Talento Humano, permite al empresario publicar ofertas, 
+            filtrar candidatos automáticamente y coordinar entrevistas virtuales. Brinda una interfaz personalizada 
+            que conecta habilidades con las oportunidades adecuadas, optimizando tiempo, costos y desarrollo profesional.
+        </p>
+        <img src="/talento-humano.jpg" alt="Talento Humano" data-aos="zoom-in">
+    </section>
+
+    <section id="funcionamiento">
+        <h1>FUNCIONAMIENTO</h1>
+        <p data-aos="fade-up">
+            Optimiza el proceso de selección mediante emparejamiento automático, conectando eficientemente a empleadores y candidatos.
+        </p>
+
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Registro y Configuración de Perfiles</h3>
+                <p>Creación y personalización de perfiles en un sistema, donde se almacenan datos relevantes.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Matching Automatizado</h3>
+                <p>Algoritmo que compara perfiles de candidatos con los requisitos de los puestos de trabajo.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <h3>Gestión del Proceso</h3>
+                <p>Supervisión de todas las etapas del reclutamiento.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                <h3>Feedback y Decisiones</h3>
+                <p>Provisión de comentarios y evaluaciones sobre los candidatos.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                <h3>Integración con RRHH</h3>
+                <p>Conexión con plataformas de gestión de recursos humanos.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                <h3>Seguridad y Confidencialidad</h3>
+                <p>Medidas para proteger la información sensible de los usuarios.</p>
+            </div>
+        </div>
+    </section>
+    <section class="services-section">
+        <h1>SERVICIOS</h1>
+        <div class="services-frame">
+            <iframe 
+                loading="lazy" 
+                style="width: 100%; aspect-ratio: 16/9; border: none;"
+                src="https://www.canva.com/design/DAGT-Gnj9to/ooPQMtZAjWgybLpa_osujw/view?embed" 
+                allowfullscreen="allowfullscreen" 
+                allow="fullscreen">
+            </iframe>
+        </div>
+    </section>
+    
+    <!-- Nuevo footer con tu información personal -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="personal-info">
+                <h3>Mariana Bohorquez Melo</h3>
+                <p>Aprendiz del programa de Recursos Humanos - Articulación con la media <span class="emoji-accent">📚</span></p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="emoji-accent">📧</span>
+                        <p>Email: marianabohorquezmelo@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="emoji-accent">📱</span>
+                        <p>Teléfono: +57 314 3186250</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="emoji-accent">📍</span>
+                        <p>San José del Guaviare, Guaviare</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100089074323437&ref=xav_ig_profile_web" target="_blank" class="social-link">
+                            <span class="emoji-accent">👥</span>
+                            Facebook
+                        </a>
+                        <a href="https://www.instagram.com/multicapsoluciones/" target="_blank" class="social-link">
+                            <span class="emoji-accent">📷</span>
+                            Instagram
+                        </a>
+
+                    </div>
+                </div>
+                <p class="sena-info">
+                    <span class="emoji-accent">✨</span> 
+                    <a href="https://www.facebook.com/sena.guaviare" target="_blank" class="sena-link">SENA</a> 
+                    <span class="emoji-accent">✨</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Inicializar AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Observador de intersección para las secciones
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Animación de las tarjetas al hacer hover
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
